@@ -32,8 +32,16 @@ const questions = [
         type: 'input',
         name: 'special',
         message: 'What makes your project stand out?',
-    },
+    }
 ];
+
+inquirer.prompt(questions)
+.then(answers => {
+    console.log(answers);
+})
+.catch(error => {
+    console.error(error);
+});
 
 // TODO: Create a function to write README file
 function writeToFile(fileName, data) {}
