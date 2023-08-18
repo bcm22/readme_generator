@@ -32,22 +32,61 @@ const questions = [
         type: 'input',
         name: 'special',
         message: 'What makes your project stand out?',
-    }
+    },
+    {
+        type: 'input',
+        name: 'installation',
+        message: 'What are the step required to install your project?',
+    },
 ];
 
 inquirer.prompt(questions)
-.then(answers => {
-    console.log(answers);
-})
-.catch(error => {
-    console.error(error);
-});
+    .then(answers => {
+        const readmeContent = generateREADME(answers);
+
+        fs.writeFile('README.md', readmeContent, (err) =>
+            err ? console.log(err) : console.log('README.md file has been successfully generated!')
+        );
+    });
 
 // TODO: Create a function to write README file
-function writeToFile(fileName, data) {}
+const generateREADME = (answers) => {
+    return `
+    # ${answers.projectName}
+    
+    ## Description
+    
+    -${answers.motivation}.
+    
+    -${answers.why}.
+
+    -${answers.problem}.
+
+    -${answers.learn}.
+
+    ## Table of Contents
+    
+    ## Installation
+    
+    -${answers.installation}.
+    
+    ## Usage
+
+    ## License
+
+    ## Contributing
+
+    ## Tests
+
+    ## Questions
+    
+    `;
+    };
+
+
 
 // TODO: Create a function to initialize app
-function init() {}
+function init() { }
 
 // Function call to initialize app
 init();
