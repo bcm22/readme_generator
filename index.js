@@ -81,7 +81,7 @@ const generateREADME = (answers) => {
     ## Questions
     
     `;
-    };
+};
 
 
 
