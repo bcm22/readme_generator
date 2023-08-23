@@ -50,6 +50,7 @@ inquirer.prompt(questions)
     });
 
 // TODO: Create a function to write README file
+
 const generateREADME = (answers) => {
     return `
     # ${answers.projectName}
