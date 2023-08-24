@@ -72,7 +72,7 @@ const generateREADME = (answers) => {
 
   ## Questions
 
-  ${answers.github}
+  My github username is: ${answers.github}.
 
   If you have any questions about this project, please contact me at ${answers.email}.
   
