@@ -1,7 +1,8 @@
 // TODO: Include packages needed for this application
 const inquirer = require('inquirer');
 const fs = require('fs');
-const generateMarkdown = require('./utilites/generateMarkdown');
+const { generateREADME } = require('./utilities/generateMarkdown');
+
 // TODO: Create an array of questions for user input
 const questions = [
     {
@@ -72,93 +73,17 @@ const questions = [
     }
 ];
 
-// TODO: Create a function to initialize app
-inquirer.prompt(questions)
-.then(answers => {
-    const readmeContent = generateREADME(answers);
-    
-    fs.writeFile('README.md', readmeContent, (err) =>
-    err ? console.log(err) : console.log('README.md file has been successfully generated!')
-    );
-});
+function init() {
+    // TODO: Create a function to initialize app
+    inquirer.prompt(questions)
+        .then(answers => {
+            const readmeContent = generateREADME(answers);
 
-function renderLicenseBadge(license) {
-    if (license) {
-        return `![License](https://img.shields.io/badge/license-${license}-brightgreen)`;
+            fs.writeFile('README.md', readmeContent, (err) =>
+                err ? console.log(err) : console.log('README.md file has been successfully generated!')
+            );
+        });
     }
-    return '';
-};
-
-    function renderLicenseLink(license) {
-        if (license) {
-          return `* [License](*license)\n`
-        }
-        return '';
-      }
-
-      function renderLicenseSection(license) {
-        if (license) {
-            return `## License
-        This project is licensed under the ${license} License - see the [LICENSE](LICENSE) for the details.\n`;
-        }
-            return '';
-      }
-
-// TODO: Create a function to write README file
-
-const generateREADME = (answers) => {
-    return `
-    # ${answers.projectName}
-
-    ${renderLicenseBadge(data.license)}
-    
-    ## Description
-    
-    -${answers.motivation}.
-    
-    -${answers.why}.
-
-    -${answers.problem}.
-
-    -${answers.learn}.
-
-    ## Table of Contents
-    ${renderLicenseLink(data.license)}
-    * [Installation](#installation)
-    * [Usage](#usage)
-    * [Contributing](#contributing)
-    * [Tests](#tests)
-    * [Questions](#questions)
-    
-    ## Installation
-    
-    -${answers.installation}.
-
-    -${renderLicenseSection(data.license)}
-    
-    ## Usage
-
-    -${answers.usage}.
-
-    ## Contributing
-
-    -${answers.contributors}.
-
-    ## Tests
-
-    -${answers.test}.
-
-    ## Questions
-
-    ${answers.github}
-
-    If you have any questions about this project, please contact me at ${answers.email}.
-    
-    `;
-};
-
-
-
 
 // Function call to initialize app
 init();
